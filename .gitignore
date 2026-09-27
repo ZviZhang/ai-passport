@@ -11,3 +11,14 @@ managed_components/
 /.agents/skills/passport-build
 /.agents/skills/passport-device-test
 /.agents/skills/passport-debug
+
+# Subsets generated from a user-supplied copy of Frutiger, a commercial Monotype
+# typeface. Kept out of version control so the repository never redistributes it;
+# see assets/README.md. Delete before the branch is published.
+/assets/fonts/badge_frutiger_13.c
+/assets/fonts/badge_frutiger_20.c
+
+# Identity photo of the gift recipient. Personal data: never commit it. Put the
+# source image back and regenerate with tools/make_badge_assets.py to build the
+# gift firmware locally; see assets/README.md.
+/assets/images/portrait_hengky.c
