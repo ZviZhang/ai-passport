@@ -25,7 +25,7 @@ CONFIG_LV_DEF_REFR_PERIOD=20
 CONFIG_LV_FONT_MONTSERRAT_14=y
 CONFIG_LV_FONT_MONTSERRAT_20=y
 # LVGL 内置 malloc 池大小(KB)。它是独立静态区、不与系统堆共享,配大了会白白占用 RAM。
-# 赠礼工牌有三个整屏页面 + 开机动画 + 条码图形,对象数远多于 demo,故由 24KB 调大到
+# 工牌应用有三个整屏页面 + 开机动画 + 条码图形,对象数远多于 demo,故由 24KB 调大到
 # 64KB;若仍出现绘制卡死/看门狗,继续调大此值。
 CONFIG_LV_MEM_SIZE_KILOBYTES=64
 
@@ -33,7 +33,7 @@ CONFIG_LV_MEM_SIZE_KILOBYTES=64
 CONFIG_FREERTOS_HZ=1000
 
 # --- 按键 ---
-# 长按判定阈值。button 组件默认 1500ms,而赠礼工牌的交互按规格 §4 定为
+# 长按判定阈值。button 组件默认 1500ms,而工牌应用的交互按规格 §4 定为
 # "OK 长按 ≥0.8s 直达赠言页",故显式下调到 800ms。
 # 改这里而不再改 components/bsp:该阈值是本应用的交互约定,不该改写共享 BSP 的行为。
 CONFIG_BUTTON_LONG_PRESS_TIME_MS=800

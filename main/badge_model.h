@@ -1,4 +1,4 @@
-// main/badge_model.h —— 赠礼工牌的纯逻辑状态机(页面轮转 + 息屏判定)。
+// main/badge_model.h —— 工牌应用的纯逻辑状态机(页面轮转 + 息屏判定)。
 //
 // 本文件不依赖 LVGL 与 ESP-IDF,便于在主机上直接单元测试。
 #pragma once

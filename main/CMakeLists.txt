@@ -18,7 +18,7 @@ idf_component_register(
          "../assets/images/wss_logo_red_lg.c"
          "../assets/images/emblem_pixel.c"
          "../assets/images/medal_silver.c"
-         "../assets/images/portrait_hengky.c"
+         "../assets/images/portrait_sample.c"
          "../assets/images/smt_logo.c"
          "../assets/images/smt_logo_a8.c"
          "../assets/images/bg_page3.c"

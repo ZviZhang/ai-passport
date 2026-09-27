@@ -1,4 +1,4 @@
-// main/badge_ui.c —— 赠礼工牌的三页 UI 与开机动画(自建,不复用 demo 外壳)。
+// main/badge_ui.c —— 工牌应用的三页 UI 与开机动画(自建,不复用 demo 外壳)。
 //
 // 坐标全部取自实施规格 §3/§4;单位为设备像素。屏幕 240x320 竖屏,四角被 BSP
 // 裁成半径 30 的黑色圆角,故左右留 ≥14px、上下留 ≥8px 安全区。
@@ -169,7 +169,7 @@ static void build_page_id(void) {
     lv_obj_set_style_bg_opa(frame, LV_OPA_COVER, 0);
     lv_obj_set_style_clip_corner(frame, true, 0);
     lv_obj_t *photo = lv_image_create(frame);
-    lv_image_set_src(photo, &portrait_hengky);
+    lv_image_set_src(photo, &portrait_sample);
     lv_obj_set_pos(photo, 0, 0);
 
     lv_obj_t *crew = fill(scr, 110, 102, 114, 32, C_INK, 6);
@@ -177,7 +177,7 @@ static void build_page_id(void) {
 
     barcode_create(scr, 110, 142, 114, 20);
 
-    text_top_mid(scr, "HENGKY SANJAYA", &badge_sans_bold_22, C_INK, 194);
+    text_top_mid(scr, "ALEX MORGAN", &badge_sans_bold_22, C_INK, 194);
 
     static const char *const labels[3] = {"Role", "Unit", "Nat."};
     static const char *const values[3] = {"Software Engineer", "WorldSkills Secretariat", "Indonesia"};
@@ -234,10 +234,10 @@ static void build_page_honor(void) {
 // P3 赠言页
 // ---------------------------------------------------------------------------
 
-// 赠言页的文字骨架按品牌规范走:拉丁用 Frutiger(用户提供、仅本地使用),汉字用
+// 赠言页的文字骨架按品牌规范走:拉丁用 Frutiger(商用,不随仓库分发),汉字用
 // 思源黑体 Heavy。两种字体在生成阶段就用 lv_font_conv 的 --lv-fallback 串好了
 // (见 tools/make_badge_fonts.py),所以这里直接引用 badge_frutiger_* 即可,不需要
-// 在运行时改字体描述符。中英混排的字符串("致 Hengky"、落款)里,Frutiger 没有的
+// 在运行时改字体描述符。中英混排的字符串("致 朋友"、落款)里,Frutiger 没有的
 // 汉字会经 fallback 落到思源黑体,两者的 line_height/base_line 由生成脚本统一,
 // 保证落在同一基线上。
 
@@ -268,7 +268,7 @@ static void build_page_dedication(void) {
     lv_obj_set_style_radius(col, 12, 0);
     lv_obj_set_style_pad_all(col, 6, 0);
 
-    text(col, "致 Hengky", &badge_frutiger_20, C_GOLD);
+    text(col, "致 朋友", &badge_frutiger_20, C_GOLD);
 
     // 显式换行,避免依赖 CJK 自动断行;两行都远窄于容器。
     lv_obj_t *verse = text(col, "千里送鹅毛，\n礼轻情意重", &badge_han_heavy_20, C_CREAM);

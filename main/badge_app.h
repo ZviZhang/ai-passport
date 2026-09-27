@@ -1,4 +1,4 @@
-// main/badge_app.h —— 赠礼工牌应用编排(按键分发 / 开机动画 / 音效 / 息屏)。
+// main/badge_app.h —— 工牌应用编排(按键分发 / 开机动画 / 音效 / 息屏)。
 #pragma once
 
 #ifdef __cplusplus

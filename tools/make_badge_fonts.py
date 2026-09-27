@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the LVGL bitmap fonts used by the Hengky badge application.
+"""Generate the LVGL bitmap fonts used by the badge application.
 
 Three typefaces are involved. The brand guide asks for Frutiger (Latin) and
 Source Han Sans / Source Han Serif (Chinese); Frutiger cannot be embedded in a
@@ -38,7 +38,9 @@ LATIN = "0x20-0x7E"
 EXTRA_PUNCTUATION = "0x00B7,0x2014"  # middle dot, em dash
 EM_DASH = "0x2014"
 FULL_WIDTH_COMMA = "0xFF0C"
-INSCRIPTION = "致千里送鹅毛礼轻情意重"  # dedication page, 11 Chinese characters
+GREETING_HAN = "致朋友"  # dedication page greeting line
+INSCRIPTION_HAN = "千里送鹅毛礼轻情意重"  # the verse itself, 11 Chinese characters
+DEDICATION_HAN = GREETING_HAN + INSCRIPTION_HAN  # every Han glyph the 20px face needs
 SIGNATURE_HAN = "张子威和朋友们"  # Han characters of the three-line sign-off
 
 # lv_font_conv is fetched through npx. The certificate override works around a
@@ -48,7 +50,7 @@ NPX = ["npx", "--yes", "--registry=https://registry.npmjs.org", "lv_font_conv"]
 
 # name, source file, glyph args, fallback symbol (None = no fallback).
 #
-# The dedication page mixes Latin and Chinese inside single strings ("致 Hengky",
+# The dedication page mixes Latin and Chinese inside single strings ("致 朋友",
 # "张子威和SMT朋友们"), so each Latin face carries an explicit fallback that
 # supplies the Han glyphs. `--lv-fallback` bakes that link into the
 # Flash-resident descriptor at generation time, which is why no code has to
@@ -64,7 +66,7 @@ FONTS = (
     ("badge_frutiger_20", "Frutiger_bold.ttf", f"--range {LATIN},{EM_DASH}", "badge_han_heavy_20"),
     ("badge_frutiger_13", "Frutiger_bold.ttf", f"--range {LATIN},{EM_DASH}", "badge_han_heavy_11"),
     ("badge_han_heavy_20", "SourceHanSansCN-Heavy.otf",
-     f"--range {FULL_WIDTH_COMMA} --symbols {INSCRIPTION}", None),
+     f"--range {FULL_WIDTH_COMMA} --symbols {DEDICATION_HAN}", None),
     ("badge_han_heavy_11", "SourceHanSansCN-Heavy.otf",
      f"--symbols {SIGNATURE_HAN}", None),
 )
@@ -79,17 +81,16 @@ METRIC_PAIRS = (
 EXPECTED = {
     "badge_frutiger_20": [chr(c) for c in range(0x20, 0x7F)] + ["\u2014"],
     "badge_frutiger_13": [chr(c) for c in range(0x20, 0x7F)] + ["\u2014"],
-    "badge_han_heavy_20": list(INSCRIPTION) + ["\uff0c"],
+    "badge_han_heavy_20": list(DEDICATION_HAN) + ["\uff0c"],
     "badge_han_heavy_11": list(SIGNATURE_HAN),
 }
 
 # Commercial faces whose generated output must stay out of version control.
 NON_REDISTRIBUTABLE = {"Frutiger_bold.ttf"}
 
-COMMERCIAL_BANNER = """/* This subset was generated from a user-supplied copy of Frutiger, a commercial
- * typeface owned by Monotype. It is used for the private Hengky badge gift only.
- * Do not redistribute: keep this file out of version control (see .gitignore)
- * and delete it before the branch is published. Details in assets/README.md.
+COMMERCIAL_BANNER = """/* This subset was generated from a local copy of Frutiger, a commercial typeface
+ * owned by Monotype. The licence does not allow redistribution: keep this file
+ * out of version control (see .gitignore). Details in assets/README.md.
  */
 """
 

@@ -1,4 +1,4 @@
-// main/badge_app.c —— 赠礼工牌应用编排。
+// main/badge_app.c —— 工牌应用编排。
 //
 // 线程约定(见 AGENTS.md):按键回调只入队;LVGL 只在持锁时访问;音频写入
 // 放在独立 worker 任务里,不占用按键回调与 LVGL 任务。

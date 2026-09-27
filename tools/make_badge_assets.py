@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the LVGL RGB565 image assets for the Hengky badge application.
+"""Generate the LVGL RGB565 image assets for the badge application.
 
 Reproducible pipeline: source artwork lives outside the repository in the
 developer's working folder; this script reads it, produces trimmed / quantized
@@ -321,15 +321,18 @@ def build(source_dir: Path, preview_dir: Path, smt_logo: Path) -> None:
     emit_c("medal_silver", "medal_silver", medal,
            "Pixel-art silver medal, 30x30 logical grid expanded 4x.")
 
-    portrait = Image.open(source_dir / "hengky photo.jpeg").convert("RGB")
+    # Placeholder portrait for the work-pass page. Supply your own square-ish
+    # photo as ``portrait-source.jpeg`` in the source folder; it is personal data,
+    # so the generated file is listed in .gitignore and never committed.
+    portrait = Image.open(source_dir / "portrait-source.jpeg").convert("RGB")
     pw, ph = portrait.size
     side = min(pw, ph)
     portrait = portrait.crop(((pw - side) // 2, (ph - side) // 2,
                               (pw + side) // 2, (ph + side) // 2))
     portrait = postprocess(portrait, (84, 84))
     portrait.save(preview_dir / "portrait.png")
-    emit_c("portrait_hengky", "portrait_hengky", portrait,
-           "Hengky Sanjaya portrait, centre square crop.")
+    emit_c("portrait_sample", "portrait_sample", portrait,
+           "Sample portrait, centre square crop.")
 
     # SMT lockup for the "Presented by" row: 18 px tall, so width follows the
     # source aspect ratio. BOX averaging plus a two-colour snap keeps the

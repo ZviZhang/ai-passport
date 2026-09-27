@@ -1,4 +1,4 @@
-// main/main.c —— Hengky 赠礼工牌固件入口。
+// main/main.c —— 工牌应用固件入口。
 //
 // 这是 FoloToy AI Passport 的派生应用:BSP 管硬件,界面与业务逻辑全部自建
 // (badge_ui.c / badge_app.c / badge_model.c),不复用仓库内的 demo 测试菜单。
@@ -12,7 +12,7 @@
 static const char *TAG = "main";
 
 void app_main(void) {
-    ESP_LOGI(TAG, "Hengky 赠礼工牌启动");
+    ESP_LOGI(TAG, "工牌应用启动");
 
     bsp_i2c_init();
 
